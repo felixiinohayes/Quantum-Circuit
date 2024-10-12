@@ -8,22 +8,22 @@ CFLAGS = -Wall -std=c++11
 TARGET = QuantumCircuit
 
 # Source files
-SRCS = QuantumCircuit.cpp
+SRCS = main.cpp circuit.cpp matrix.cpp component.cpp input_handler.cpp  # List all your .cpp files here
 
 # Object files (derived from source files)
 OBJS = $(SRCS:.cpp=.o)
 
-# Default rule
+# Default rule to build the target
 all: $(TARGET)
 
-# Link object files to create executable
+# Rule to link the object files into the final executable
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
-# Compile source files into object files
+# Rule to compile each .cpp file into .o object files
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean up the build (removes object files and executable)
+# Rule to clean up (remove object files and the executable)
 clean:
 	rm -f $(OBJS) $(TARGET)
