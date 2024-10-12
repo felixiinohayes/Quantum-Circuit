@@ -22,7 +22,7 @@ int main() {
     if (qubits > 8) {
         char yn_input;
         while (std::cout << "Warning! Selected number of qubits is large (>8). Continue? (y/n): " 
-               && !(std::cin >> yn_input) || (yn_input != 'y' && yn_input != 'n')) {
+               && (!(std::cin >> yn_input) || (yn_input != 'y' && yn_input != 'n'))) {
             error_msg("Error: Invalid input.");
         }
         if (yn_input == 'n') {

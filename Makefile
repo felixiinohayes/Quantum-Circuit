@@ -1,29 +1,37 @@
 # Compiler
-CC = g++
+CXX = g++
+CXXFLAGS = -Wall -std=c++11
 
-# Compiler flags
-CFLAGS = -Wall -std=c++11
+# Directories
+INCLUDE_DIR = include
+SRC_DIR = src
+BUILD_DIR = build
 
-# Target executable
+# Source and object files
+SRCS = $(wildcard $(SRC_DIR)/*.cpp) main.cpp
+OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SRCS))
+
+# Output binary
 TARGET = QuantumCircuit
 
-# Source files
-SRCS = main.cpp circuit.cpp matrix.cpp component.cpp input_handler.cpp  # List all your .cpp files here
+# Default rule to build the project
+all: $(BUILD_DIR) $(TARGET)
 
-# Object files (derived from source files)
-OBJS = $(SRCS:.cpp=.o)
-
-# Default rule to build the target
-all: $(TARGET)
-
-# Rule to link the object files into the final executable
+# Rule to compile the target
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE_DIR) -o $@ $(OBJS)
 
-# Rule to compile each .cpp file into .o object files
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+# Rule to compile object files
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
 
-# Rule to clean up (remove object files and the executable)
+# Create the build directory if it doesn't exist
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+# Clean build artifacts
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -rf $(BUILD_DIR) $(TARGET)
+
+# Phony targets
+.PHONY: all clean

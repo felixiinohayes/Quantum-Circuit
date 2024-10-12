@@ -88,38 +88,48 @@ void circuit::order_reg() {
 }
 
 // Print statevector in bra-ket notation
-void circuit::print_braket(matrix statevector) {
-    if (statevector.get_cols() != 1 || statevector.get_rows() != matrix_size) {
+void circuit::print_braket(matrix statevector)
+{
+    if (statevector.get_cols() != 1 || statevector.get_rows() != matrix_size) { // Checks if input statevector is valid
         throw std::invalid_argument("Invalid statevector size.");
     }
     bool first_term = true;
     for (int i = 1; i <= statevector.get_rows(); i++) {
-        std::complex<double> value = statevector.get_value(i, 1);
-        if (std::abs(value) != 0) {
+        std::complex<double> value = statevector.get_value(i,1);
+        if (std::abs(value) != 0) { // Check if vector element is 0
             if (!first_term) {
-                if (value.real() > 0 || (value.real() == 0 && value.imag() > 0)) {
-                    std::cout << "+ ";
-                }
+                if (value.real() > 0 || (value.real() == 0 && value.imag() > 0))
+                std::cout << "+ ";
             } else {
                 first_term = false;
             }
-            if (std::abs(value) == 1 && value.imag() == 0) {
+            if (std::abs(value) == 1 && value.imag() == 0) { // Clean up output when real part is +/- 1
                 if (value.real() == 1) {
                     std::cout << "|";
                 } else {
                     std::cout << "-|";
                 }
+            } else if (std::abs(value) == 1 && value.real() == 0) { // Clean up output when real part is +/- 1
+                if (value.imag() == 1) {
+                    std::cout << "i|";
+                } else {
+                    std::cout << "-i|";
+                }
             } else {
-                std::cout << std::setprecision(3) << value << "|";
+                if(value.real() != 0 && value.imag() == 0) {
+                    std::cout << std::setprecision(3) << value.real() << "|"; 
+                } else if(value.real() == 0 && value.imag() != 0) {
+                    std::cout << std::setprecision(3) << value.imag() << "i|"; 
+                }
             }
 
+            // Calculates string inside ket using bitset
             for (int j = qubits - 1; j >= 0; j--) {
-                std::cout << (((i - 1) >> j) & 1);
+                std::cout << (((i-1) >> j) & 1);
             }
-            std::cout << "> ";
-        }
+        std::cout << "> ";
+        }   
     }
-    std::cout << std::endl;
 }
 
 // Print ASCII representation of the circuit
@@ -146,7 +156,7 @@ void circuit::draw()
         }
     }
 
-    // loop over qubits in circuit, printing each qubit line in order
+    // Loop over qubits in circuit, printing each qubit line in order
     for (int i=0; i<qubits; i++) {
         // Top third of line
         std::cout << "        ";
