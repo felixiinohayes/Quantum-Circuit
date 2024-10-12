@@ -74,8 +74,7 @@ std::complex<double> matrix::get_value(const int &m, const int &n) const {
 }
 
 // Returns the transpose of the matrix
-matrix matrix::get_transpose() const
-{
+matrix matrix::get_transpose() const {
     matrix result(columns, rows);
     for (int i = 1; i <= rows; i++) {
         for (int j = 1; j <= columns; j++) {
@@ -97,8 +96,7 @@ matrix matrix::operator+(const matrix &m) const {
     }
     return output;
 }
-matrix matrix::operator-(const matrix &m) const
-{
+matrix matrix::operator-(const matrix &m) const {
     matrix output(rows, columns);
     if (rows == m.rows && columns == m.columns) {
         for (int i = 0; i < rows * columns; i++) {
@@ -109,8 +107,7 @@ matrix matrix::operator-(const matrix &m) const
     }
     return output;
 }
-matrix matrix::operator*(const matrix &m) const
-{
+matrix matrix::operator*(const matrix &m) const {
     matrix output(rows, m.columns);
     if (columns == m.rows) {
         for (int i = 1; i <= rows; i++) {
@@ -167,8 +164,7 @@ std::istream& operator>>(std::istream &is, matrix &m) {
 }
 
  // Overload copy assignment operator
-matrix& matrix::operator=(const matrix &m)
-{
+matrix& matrix::operator=(const matrix &m) {
     if (this != &m) {
         delete[] matrix_data;
         rows = m.rows;
@@ -184,8 +180,7 @@ matrix& matrix::operator=(const matrix &m)
 }
 
 // Overload move assignment operator
-matrix& matrix::operator=(matrix &&m) noexcept
-{
+matrix& matrix::operator=(matrix &&m) noexcept {
     if (this != &m) {
         rows = m.rows;
         columns = m.columns;
@@ -202,8 +197,7 @@ matrix& matrix::operator=(matrix &&m) noexcept
 }
 
 // Calculate tensor product of matrix with input
-matrix matrix::tensor_product(const matrix &m) const
-{
+matrix matrix::tensor_product(const matrix &m) const {
     matrix output{rows * m.rows, columns * m.columns};
     for (int i = 1; i <= rows; i++) {
         for (int j = 1; j <= columns; j++) {

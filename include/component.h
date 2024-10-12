@@ -1,7 +1,7 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include "matrix.h"  // Assuming matrix.h contains your matrix and complex class
+#include "matrix.h"
 #include <string>
 #include <vector>
 #include <cmath>

@@ -12,7 +12,7 @@ void error_msg(std::string message);
 
 matrix get_input_vector(std::vector<char> initial_states);
 int get_qubits_from_user();
-std::vector<char> get_initial_states(int qubits);
+std::vector<char> get_initial_states_from_user(int qubits);
 std::string get_component_from_user(const std::vector<std::string>& comp_library);
 
 void print_library(const std::vector<std::string>& comp_library);

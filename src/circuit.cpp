@@ -2,7 +2,7 @@
 
 // Destructor
 circuit::~circuit() {
-    reg.clear();  // Clear dynamically allocated memory
+    reg.clear();
 }
 
 // Constructor
@@ -88,8 +88,7 @@ void circuit::order_reg() {
 }
 
 // Print statevector in bra-ket notation
-void circuit::print_braket(matrix statevector)
-{
+void circuit::print_braket(matrix statevector) {
     if (statevector.get_cols() != 1 || statevector.get_rows() != matrix_size) { // Checks if input statevector is valid
         throw std::invalid_argument("Invalid statevector size.");
     }
@@ -133,8 +132,7 @@ void circuit::print_braket(matrix statevector)
 }
 
 // Print ASCII representation of the circuit
-void circuit::draw()
-{
+void circuit::draw() {
     // Determine which columns of the circuit register contain multi-qubit components
     std::vector<std::vector<int>> multi_gates; // Stores control and target locations of multi-qubit gates 
     std::vector<std::string> multi_gate_symbols;

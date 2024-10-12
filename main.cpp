@@ -31,7 +31,7 @@ int main() {
     }
 
     // Get initial states of each qubit from the user
-    std::vector<char> initial_states = get_initial_states(qubits);
+    std::vector<char> initial_states = get_initial_states_from_user(qubits);
     matrix input_vector = get_input_vector(initial_states);  // Assuming you have this function somewhere
 
     // Predefined component library

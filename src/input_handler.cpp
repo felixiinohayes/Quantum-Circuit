@@ -39,7 +39,6 @@ matrix get_input_vector(std::vector<char> initial_states)
     return product;
 }
 
-// Function to get the number of qubits from the user
 int get_qubits_from_user() {
     int qubits;
     while (std::cout << "Enter number of qubits in circuit: " && (!(std::cin >> qubits) || qubits < 1)) {
@@ -48,8 +47,7 @@ int get_qubits_from_user() {
     return qubits;
 }
 
-// Function to get initial states of each qubit
-std::vector<char> get_initial_states(int qubits) {
+std::vector<char> get_initial_states_from_user(int qubits) {
     std::vector<char> initial_states(qubits);
     for (int i = 0; i < qubits; i++) {
         while (std::cout << "Enter initial state of qubit " << i << " ('0' or '1'): " 
@@ -62,8 +60,7 @@ std::vector<char> get_initial_states(int qubits) {
 }
 
 // Function to print component library to console
-void print_library(const std::vector<std::string>& comp_library)
-{
+void print_library(const std::vector<std::string>& comp_library) {
     std::cout << "Component library: " << std::endl;
     std::cout << "[";
     for (auto it = comp_library.begin(); it != comp_library.end(); ++it) {
@@ -75,7 +72,6 @@ void print_library(const std::vector<std::string>& comp_library)
     std::cout << "]" << std::endl << std::endl;
 }
 
-// Function to get the component from the user
 std::string get_component_from_user(const std::vector<std::string>& comp_library) {
     std::string comp_name;
     while (std::cout << "Enter name of component to add ('x', 'y', 'z', 'h', 'cx', 'cy', 'cz', 'ch' OR type '0' to finish and compute): " 

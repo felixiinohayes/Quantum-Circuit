@@ -21,25 +21,13 @@ private:
 public:
     ~circuit();
     
-    // Parameterized constructor
     circuit(int qubits, matrix input, std::vector<char> initial_states);
 
-    // Get the number of qubits in the circuit
     int get_qubits() const;
-
-    // Add component to circuit at specified qubit
     void add(component* comp);
-
-    // Computes matrix product of the current circuit
     matrix get_resultant_matrix();
-
-    // Reorder circuit register to minimize the number of columns
     void order_reg();
-
-    // Print statevector in bra-ket notation
     void print_braket(matrix statevector);
-
-    // Print ASCII representation of the circuit
     void draw();
 };
 
