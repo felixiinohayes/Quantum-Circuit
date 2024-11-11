@@ -1,5 +1,5 @@
 # Quantum Circuit Simulator
-This is a C++ project that simulates a quantum circuit with a CLI interface, allowing users to build quantum circuits using predefined quantum gates and compute the resultant quantum state.
+Simulates a quantum circuit with a CLI interface, allowing users to build quantum circuits using predefined quantum gates, specify an input and compute the resultant quantum state.
 ## Features
 - User-defined number of qubits
 - Supported gates: Pauli (X,Y,Z), Hadamard and their controlled counterparts (CX, CY, CZ, CH)
